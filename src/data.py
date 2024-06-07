@@ -21,35 +21,7 @@ def create_dataset(dataset, lookback):
     return torch.tensor(X), torch.tensor(y)
 
 
-def loader(batch_size=8):
-    df = pd.read_csv("airline-passengers.csv")
-    timeseries = df[["Passengers"]].values.astype("float32")
-
-    # train-test split for time series
-    train_size = int(len(timeseries) * 0.67)
-    test_size = len(timeseries) - train_size
-    train, test = timeseries[:train_size], timeseries[train_size:]
-
-    lookback = 4
-    X_train, y_train = create_dataset(train, lookback=lookback)
-    X_test, y_test = create_dataset(test, lookback=lookback)
-
-    train_loader = data.DataLoader(
-        data.TensorDataset(X_train, y_train), shuffle=True, batch_size=batch_size
-    )
-    val_loader = data.DataLoader(
-        data.TensorDataset(X_test, y_test), shuffle=False, batch_size=batch_size
-    )
-    whole_loader = data.DataLoader(
-        data.TensorDataset(torch.tensor(timeseries[:-1]), torch.tensor(timeseries[1:])),
-        shuffle=False,
-        batch_size=8,
-    )
-
-    return train_loader, val_loader
-
-
-class AirDataModule(L.LightningDataModule):
+class SeqDataModule(L.LightningDataModule):
     def __init__(
         self,
         csv_path: str = "airline-passengers.csv",

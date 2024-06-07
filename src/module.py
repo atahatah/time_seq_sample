@@ -9,7 +9,7 @@ import pytorch_lightning as L
 import wandb
 
 
-class AirModel(nn.Module):
+class SeqModel(nn.Module):
     def __init__(self):
         super().__init__()
         self.lstm = nn.LSTM(
@@ -23,7 +23,7 @@ class AirModel(nn.Module):
         return x
 
 
-class AirModule(L.LightningModule):
+class SeqModule(L.LightningModule):
     def __init__(
         self,
         lr=1e-4,
@@ -37,7 +37,7 @@ class AirModule(L.LightningModule):
         self.save_interval = save_interval
         self.batches_to_log = batches_to_log
 
-        self.model = AirModel()
+        self.model = SeqModel()
         self.criterion = nn.MSELoss()
 
     def forward(self, x):

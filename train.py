@@ -8,20 +8,20 @@ from pytorch_lightning.loggers import WandbLogger
 from pytorch_lightning.callbacks import ModelCheckpoint, EarlyStopping
 import wandb
 
-from src.module import AirModule
-from src.data import AirDataModule
+from src.module import SeqModule
+from src.data import SeqDataModule
 
 
 def main(opt: argparse.Namespace):
     L.seed_everything(opt.seed)
 
-    module = AirModule(
+    module = SeqModule(
         lr=opt.lr,
         lookback=opt.lookback,
         save_interval=opt.save_interval,
         batches_to_log=opt.batches_to_log,
     )
-    dm = AirDataModule(
+    dm = SeqDataModule(
         batch_size=opt.batch_size,
         csv_path=opt.csv_file,
         row_name=opt.row_name,
@@ -75,8 +75,8 @@ def main(opt: argparse.Namespace):
 
 
 def show_prediction(
-    module: AirModule,
-    dm: AirDataModule,
+    module: SeqModule,
+    dm: SeqDataModule,
     chpt_path: str = None,
     filename: str = "predict.png",
 ):
