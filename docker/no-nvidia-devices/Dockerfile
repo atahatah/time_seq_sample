@@ -30,6 +30,6 @@ RUN export GIT_SSL_NO_VERIFY=1 \
     && make install
 
 COPY requirements.txt requirements.txt
-# RUN pip3 install -r requirements.txt
+RUN pip3 install -r requirements.txt
 
 CMD [ "/bin/zsh" ]
