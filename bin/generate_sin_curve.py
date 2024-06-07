@@ -24,7 +24,7 @@ noisy_signal = signal + noise
 df = pd.DataFrame({"Time": t, "Noisy_Sine_Wave": noisy_signal})
 
 # CSVファイルに出力
-csv_file_path = "/work/time_seq/airline/inputs/noisy_sine_wave.csv"
+csv_file_path = "/work/data/noisy_sine_wave.csv"
 df.to_csv(csv_file_path, index=False)
 
 # 結果のプロット
@@ -33,5 +33,5 @@ plt.xlabel("Time [s]")
 plt.ylabel("Amplitude")
 plt.title("Noisy Sine Wave")
 plt.legend()
-plt.savefig("/work/time_seq/airline/outputs/noisy_sine_wave.png")
+plt.savefig("/work/outputs/noisy_sine_wave.png")
 plt.close()

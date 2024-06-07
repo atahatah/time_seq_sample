@@ -22,7 +22,7 @@ def create_dataset(dataset, lookback):
 
 
 def loader(batch_size=8):
-    df = pd.read_csv("time_seq/airline/airline-passengers.csv")
+    df = pd.read_csv("airline-passengers.csv")
     timeseries = df[["Passengers"]].values.astype("float32")
 
     # train-test split for time series
@@ -52,7 +52,7 @@ def loader(batch_size=8):
 class AirDataModule(L.LightningDataModule):
     def __init__(
         self,
-        csv_path: str = "time_seq/airline/airline-passengers.csv",
+        csv_path: str = "airline-passengers.csv",
         row_name: str = "Passengers",
         batch_size: int = 8,
         num_workers: int = 4,

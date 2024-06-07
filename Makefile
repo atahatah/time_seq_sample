@@ -6,7 +6,7 @@ allargs = $(ARGS) --gpu $(GPU)
 
 def = docker/singularity/image.def
 sif = image.sif
-tag = 0.0.3
+tag = 0.0.1
 
 singularity = singularity exec --nv --bind $(PWD):/work,$(HOST_DATA_DIR):/data --pwd /work --env-file .env $(sif)
 remote = library://atahatah/time_seq/runner:$(tag)

@@ -8,8 +8,8 @@ from pytorch_lightning.loggers import WandbLogger
 from pytorch_lightning.callbacks import ModelCheckpoint, EarlyStopping
 import wandb
 
-from time_seq.airline.src.module import AirModule
-from time_seq.airline.src.data import AirDataModule
+from src.module import AirModule
+from src.data import AirDataModule
 
 
 def main(opt: argparse.Namespace):
@@ -32,7 +32,7 @@ def main(opt: argparse.Namespace):
         name=opt.name,
         project=opt.project,
         offline=opt.offline,
-        save_dir="/work/time_seq/airline/wandb",
+        save_dir="/work/wandb",
         log_model=not opt.offline,
         config=vars(opt),
         mode="disabled" if opt.offline else "online",
@@ -63,7 +63,7 @@ def main(opt: argparse.Namespace):
     trainer.fit(module, dm)
     trainer.test(module, dm, ckpt_path=val_checkpoint.best_model_path)
 
-    filename = "/work/time_seq/airline/outputs/predict.png"
+    filename = "/work/outputs/predict.png"
     show_prediction(
         module, dm, chpt_path=val_checkpoint.best_model_path, filename=filename
     )
@@ -126,7 +126,7 @@ def create_parser():
     parser.add_argument("--lr", type=float, default=1e-3)
 
     parser.add_argument(
-        "--csv_file", type=str, default="time_seq/airline/inputs/airline-passengers.csv"
+        "--csv_file", type=str, default="/work/data/airline-passengers.csv"
     )
     parser.add_argument("--row_name", type=str, default="Passengers")
 
