@@ -1,0 +1,4 @@
+EGG @ git+https://github.com/facebookresearch/EGG.git@18d72d86cf9706e7ad82f94719b56accd288e59a
+lightning
+matplotlib
+japanize_matplotlib

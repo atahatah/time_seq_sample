@@ -1,0 +1,41 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "time seq",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "time_seq/train.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--step=2",
+            ]
+        },
+        {
+            "name": "airline",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "time_seq/airline/train.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--epoch=10",
+                "--csv_file=/work/time_seq/airline/inputs/noisy_sine_wave.csv",
+                "--save_interval=1",
+                "--row_name=Noisy_Sine_Wave",
+            ]
+        },
+    ],
+}
